@@ -4,40 +4,38 @@ class MyCircularDeque:
         self.res = []
         self.k = k
     def insertFront(self, value: int) -> bool:
-        if len(self.res)==self.k:
+        if self.isFull():
             return False
         self.res.insert(0,value)
         return True
     def insertLast(self, value: int) -> bool:
-        if len(self.res)==self.k:
+        if self.isFull():
             return False
         self.res.append(value)
         return True
     def deleteFront(self) -> bool:
-        if not self.res:
+        if self.isEmpty():
             return False
         self.res.pop(0)
         return True
 
     def deleteLast(self) -> bool:
-        if not self.res:
+        if self.isEmpty():
             return False
         self.res.pop()
         return True
     def getFront(self) -> int:
-        if not self.res:
+        if self.isEmpty():
             return -1
         return self.res[0]
     def getRear(self) -> int:
-        if not self.res:
+        if self.isEmpty():
             return -1
         return self.res[-1]
     def isEmpty(self) -> bool:
         if not self.res:
             return True
         return False
-        
-
     def isFull(self) -> bool:
         if len(self.res)==self.k:
             return True
