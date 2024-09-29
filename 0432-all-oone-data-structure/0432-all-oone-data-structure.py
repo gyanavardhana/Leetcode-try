@@ -8,18 +8,18 @@ class AllOne:
 
     def inc(self, key: str) -> None:
         self.d[key]+=1
-        heapq.heappush(self.maxheap, (-self.d[key], key))
+        heapq.heappush(self.maxheap, (-self.d[key],key))
         heapq.heappush(self.minheap, (self.d[key], key))
-
 
     def dec(self, key: str) -> None:
         if key in self.d:
             self.d[key]-=1
             if self.d[key]==0:
                 del self.d[key]
-            heapq.heappush(self.maxheap, (-self.d[key], key))
-            heapq.heappush(self.minheap, (self.d[key], key))
-            
+            else:
+                heapq.heappush(self.maxheap, (-self.d[key],key))
+                heapq.heappush(self.minheap, (self.d[key], key))
+                
 
     def getMaxKey(self) -> str:
         while self.maxheap:
@@ -27,8 +27,7 @@ class AllOne:
             if -count == self.d[key]:
                 return key
             heapq.heappop(self.maxheap)
-        return ""
-
+        return ''
 
     def getMinKey(self) -> str:
         while self.minheap:
@@ -36,7 +35,7 @@ class AllOne:
             if count == self.d[key]:
                 return key
             heapq.heappop(self.minheap)
-        return ""
+        return ''
 
         
 
