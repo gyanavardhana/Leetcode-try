@@ -4,30 +4,20 @@ class CustomStack:
         self.res = []
         self.k = maxSize
         
-
     def push(self, x: int) -> None:
-        if not self.isFull():
+        if len(self.res)<self.k:
             self.res.append(x)
-
+            
     def pop(self) -> int:
-        if not self.isEmpty():
+        if not self.res==[]:
             return self.res.pop()
         return -1
-
     def increment(self, k: int, val: int) -> None:
-        for i in range(len(self.res)):
-            if i<=k-1:
-                self.res[i] = self.res[i] + val
+        for i in range(min(k, len(self.res))):
+            self.res[i] += val
 
-    def isEmpty(self) -> bool:
-        if len(self.res)==0:
-            return True
-        return False
 
-    def isFull(self) -> bool:
-        if len(self.res)==self.k:
-            return True
-        return False
+    
 
         
 
