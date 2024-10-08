@@ -10,7 +10,7 @@ class Solution:
                     st.pop()
                 else:
                     mis += 1
-        return ceil(mis / 2)
+        return ceil(mis+1)//2
         
         
         
