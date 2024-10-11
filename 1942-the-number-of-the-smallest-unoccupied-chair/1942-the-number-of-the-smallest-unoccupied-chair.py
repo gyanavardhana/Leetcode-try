@@ -1,22 +1,26 @@
 class Solution:
     def smallestChair(self, times: List[List[int]], targetFriend: int) -> int:
         e = []
-        for i,(a,d) in enumerate(times):
-            e.append((a,0,i))
-            e.append((d,1,i))
-        e.sort(key=lambda x:(x[0],x[1]=='0'))
+        n = len(times)
+        for idd,(a,d) in enumerate(times):
+            e.append((a,idd,'arrive'))
+            e.append((d,idd,'leave'))
+        e.sort(key=lambda x:(x[0],x[2]=='arrive'))
         ac = []
-        for i in range(len(times)):
-            heapq.heappush(ac,i)
-        d = {}
-        for t,e,idd in e:
-            if e==0:
-                c = heapq.heappop(ac)
-                d[idd] = c
+        oc = {}
+        cc = 0
+        for t,idd,et in e:
+            if et == 'arrive':
+                if ac:
+                    c = heappop(ac)
+                else:
+                    c = cc
+                    cc += 1
+                oc[idd] = c
                 if idd == targetFriend:
                     return c
             else:
-                c = d[idd]
+                c = oc[idd]
                 heapq.heappush(ac,c)
 
 
