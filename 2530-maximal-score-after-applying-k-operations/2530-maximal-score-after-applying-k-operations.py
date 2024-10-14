@@ -1,16 +1,17 @@
 class Solution:
     def maxKelements(self, nums: List[int], k: int) -> int:
         res = 0
-        maxi = []
+        maxheap  = []
         for i in nums:
-            maxi.append(-i)
-        heapq.heapify(maxi)
+            maxheap.append(-i)
+        heapq.heapify(maxheap)
         while k:
-            n = -heapq.heappop(maxi)
-            res += n
+            s = -heapq.heappop(maxheap)
+            res += s
             k -= 1
-            p = -ceil(n/3)
-            heapq.heappush(maxi, p)
+            p = -ceil(s / 3)
+            heapq.heappush(maxheap, p)
         return res
+        
 
         
