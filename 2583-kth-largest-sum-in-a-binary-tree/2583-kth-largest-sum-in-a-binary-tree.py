@@ -7,7 +7,7 @@
 class Solution:
     def kthLargestLevelSum(self, root: Optional[TreeNode], k: int) -> int:
         if not root:
-            return []
+            return -1
         q = [root]
         l = []
         sub = []
@@ -20,10 +20,14 @@ class Solution:
                 if node.right:
                     q.append(node.right)
             l.append(sum(sub))
-            sub=[]
+            sub = []
         l.sort(reverse=True)
         if k>len(l):
             return -1
         else:
             return l[k-1]
+
+
+
+        
         
