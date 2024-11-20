@@ -1,10 +1,10 @@
 class Solution:
     def takeCharacters(self, s: str, k: int) -> int:
-        d = {}
+        if k==0:
+            return 0
+        d = {"a": 0,"b": 0, "c":0}
         for i in s:
             d[i] = d.get(i, 0)+1
-        if "a" not in d or "b" not in d or "c" not in d:
-            return -1
         if d["a"]<k or d["b"]<k or d["c"]<k:
             return -1
         left = 0
