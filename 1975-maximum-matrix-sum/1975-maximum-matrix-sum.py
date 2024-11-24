@@ -11,7 +11,8 @@ class Solution:
                     negcnt += 1
                 else:
                     su += x
-        if negcnt%2==0:
+        if negcnt % 2 == 0:
             return su
         else:
-            return su-2 * minab
+            return su - (2 * minab)
+        
