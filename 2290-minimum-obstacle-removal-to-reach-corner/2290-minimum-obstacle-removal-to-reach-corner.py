@@ -1,29 +1,20 @@
 class Solution:
     def minimumObstacles(self, grid: List[List[int]]) -> int:
-        m, n = len(grid), len(grid[0])
-        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]  # right, down, left, up
-        
-        # Deque for 0-1 BFS: (x, y, obstacles_removed)
-        deque_ = deque([(0, 0, 0)])  # Start at (0, 0) with 0 obstacles removed
-        visited = [[False] * n for _ in range(m)]
-        visited[0][0] = True
-        
-        while deque_:
-            x, y, obstacles_removed = deque_.popleft()
-            
-            # If we reach the bottom-right corner
-            if x == m - 1 and y == n - 1:
-                return obstacles_removed
-            
-            for dx, dy in directions:
-                nx, ny = x + dx, y + dy
-                
-                if 0 <= nx < m and 0 <= ny < n and not visited[nx][ny]:
-                    visited[nx][ny] = True
+        m,n = len(grid), len(grid[0])
+        dire = [(0,1),(1,0),(0,-1),(-1,0)]
+        que = deque([(0,0,0)])
+        vis = [[False] * n for _ in range(m)]
+        vis[0][0] = True
+        while que:
+            x,y, obsr = que.popleft()
+            if x==m-1 and y==n-1:
+                return obsr
+            for dx,dy in dire:
+                nx,ny = x+dx, y+dy
+                if 0<=nx<m and 0<=ny<n and not vis[nx][ny]:
+                    vis[nx][ny] = True
                     if grid[nx][ny] == 0:
-                        deque_.appendleft((nx, ny, obstacles_removed))  # No obstacle to remove
+                        que.appendleft((nx,ny,obsr))
                     else:
-                        deque_.append((nx, ny, obstacles_removed + 1))  # Remove the obstacle
-        
-        # If no path exists (problem constraints guarantee at least one path exists)
+                        que.append((nx,ny,obsr + 1))
         return -1
